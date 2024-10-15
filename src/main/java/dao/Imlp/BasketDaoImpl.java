@@ -3,7 +3,7 @@ package dao.Imlp;
 import connection.ConnectionDataBase;
 import dao.BasketDao;
 import domain.Basket;
-import domain.Product;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +19,8 @@ public class BasketDaoImpl implements BasketDao {
     static String DELETE = "delete from basket where idBasket=?";
     static String UPDATE = "update basket set idBasket=?, idUser=?, idProduct=?, where id=? ";
 
+    private static Logger logger = Logger.getLogger(BasketDaoImpl.class);
+
     private final Connection connection;
     private PreparedStatement preparedStatement;
 
@@ -27,25 +29,36 @@ public class BasketDaoImpl implements BasketDao {
     }
 
     @Override
-    public Basket create(Basket basket) throws SQLException {
-        preparedStatement = connection.prepareStatement(CREATE);
-        preparedStatement.setInt(2,basket.getIdUser());
-        preparedStatement.setInt(2,basket.getIdProduct());
-        preparedStatement.executeUpdate();
+    public Basket create(Basket basket)  {
+        try {
+            preparedStatement = connection.prepareStatement(CREATE);
+            preparedStatement.setInt(2,basket.getIdUser());
+            preparedStatement.setInt(2,basket.getIdProduct());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+
         return basket;
+
     }
 
     @Override
-    public Basket read(int id) throws SQLException {
+    public Basket read(int id)  {
         Basket basket = null;
-        preparedStatement = connection.prepareStatement(READ_BY_ID);
-        preparedStatement.setInt(1, id);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
+        try {
+            preparedStatement = connection.prepareStatement(READ_BY_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
 
-        int idUser = resultSet.getInt("idUser");
-        int idProduct = resultSet.getInt("idProduct");
-        basket =new Basket(idUser,idProduct);
+            int idUser = resultSet.getInt("idUser");
+            int idProduct = resultSet.getInt("idProduct");
+            basket =new Basket(idUser,idProduct);
+        } catch (SQLException e) {
+            logger.error(e);
+        }
 
         return basket;
     }
@@ -56,22 +69,31 @@ public class BasketDaoImpl implements BasketDao {
     }
 
     @Override
-    public void delete(int id) throws SQLException {
-        preparedStatement = connection.prepareStatement(DELETE);
-        preparedStatement.setInt(1, id);
-        preparedStatement.executeUpdate();
+    public void delete(int id)  {
+        try {
+            preparedStatement = connection.prepareStatement(DELETE);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+
     }
 
     @Override
-    public List<Basket> readAll() throws SQLException {
+    public List<Basket> readAll()  {
         List<Basket> basketsList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement(READ);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()){
-            int idUser = resultSet.getInt("idUser");
-            int idProduct = resultSet.getInt("idProduct");
+        try {
+            preparedStatement = connection.prepareStatement(READ);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int idUser = resultSet.getInt("idUser");
+                int idProduct = resultSet.getInt("idProduct");
 
-            basketsList.add(new Basket(idUser,idProduct));
+                basketsList.add(new Basket(idUser,idProduct));
+            }
+        } catch (SQLException e) {
+            logger.error(e);
         }
         return basketsList;
     }

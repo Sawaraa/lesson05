@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface AbstractDao<T> {
 
-    T create(T t) throws SQLException;
+    T create(T t) ;
 
-    T read(int id) throws SQLException;
+    T read(int id) ;
 
     T update(T t);
 
-    void delete(int id) throws SQLException;
+    void delete(int id) ;
 
-    List<T> readAll() throws SQLException;
+    List<T> readAll() ;
 }

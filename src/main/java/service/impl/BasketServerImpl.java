@@ -4,6 +4,7 @@ import dao.BasketDao;
 import dao.Imlp.BasketDaoImpl;
 import domain.Basket;
 import service.BasketService;
+import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -11,19 +12,24 @@ import java.util.List;
 public class BasketServerImpl implements BasketService{
 
     private BasketDao basketDao;
+    private static Logger logger = Logger.getLogger(BasketServerImpl.class);
 
-    public BasketServerImpl() throws SQLException {
-        basketDao = new BasketDaoImpl();
+    public BasketServerImpl() {
+        try {
+            basketDao = new BasketDaoImpl();
+        } catch (SQLException e) {
+            logger.error(e);
+        }
     }
 
 
     @Override
-    public Basket create(Basket basket) throws SQLException {
+    public Basket create(Basket basket) {
         return basketDao.create(basket);
     }
 
     @Override
-    public Basket read(int id) throws SQLException {
+    public Basket read(int id)  {
         return basketDao.read(id);
     }
 
@@ -33,12 +39,12 @@ public class BasketServerImpl implements BasketService{
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(int id)  {
         basketDao.delete(id);
     }
 
     @Override
-    public List<Basket> readAll() throws SQLException {
+    public List<Basket> readAll()  {
         return basketDao.readAll();
     }
 }

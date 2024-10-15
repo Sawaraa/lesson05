@@ -3,6 +3,7 @@ package service.impl;
 import dao.Imlp.ProductDaoImpl;
 import dao.ProductDao;
 import domain.Product;
+import org.apache.log4j.Logger;
 import service.ProsuctService;
 
 import java.sql.SQLException;
@@ -11,18 +12,23 @@ import java.util.List;
 public class ProductServerImpl implements ProsuctService {
 
     private ProductDao productDao;
+    private static Logger logger = Logger.getLogger(ProductServerImpl.class);
 
-    public ProductServerImpl() throws SQLException {
-        productDao = new ProductDaoImpl();
+    public ProductServerImpl() {
+        try {
+            productDao = new ProductDaoImpl();
+        } catch (SQLException e) {
+            logger.error(e);
+        }
     }
 
     @Override
-    public Product create(Product product) throws SQLException {
+    public Product create(Product product) {
         return productDao.create(product);
     }
 
     @Override
-    public Product read(int id) throws SQLException {
+    public Product read(int id)  {
         return productDao.read(id);
     }
 
@@ -32,12 +38,12 @@ public class ProductServerImpl implements ProsuctService {
     }
 
     @Override
-    public void delete(int id) throws SQLException {
+    public void delete(int id)  {
         productDao.delete(id);
     }
 
     @Override
-    public List<Product> readAll() throws SQLException {
+    public List<Product> readAll(){
         return productDao.readAll();
     }
 }

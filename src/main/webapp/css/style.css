@@ -1,0 +1,17 @@
+.title {
+    color: #8f6464;
+    font-weight: bold;
+    position: absolute;
+    top: 10%;
+    margin: 0 0 20px 20px;
+}
+
+.forms {
+    width: 60%;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    margin: 100px auto;
+}

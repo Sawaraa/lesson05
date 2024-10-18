@@ -27,8 +27,7 @@ public class RegistrationServlet extends HttpServlet {
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
@@ -36,6 +35,9 @@ public class RegistrationServlet extends HttpServlet {
 
         if (!firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             userService.create(new User(firstName, lastName, email, password));
+        }
+        else{
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         request.getRequestDispatcher("magazine.jsp").forward(request, response);
     }

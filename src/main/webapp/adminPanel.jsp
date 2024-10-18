@@ -7,48 +7,35 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.4/dist/css/uikit.min.css" />
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="css/admin.css">
+     <script> src= "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"</script>
 </head>
 <body>
     <jsp:include page="header.jsp"></jsp:include>
 
-    <section>
-        <div class="adminPanel">
-        <h2 class="title" >Make Magazine</h2>
-            <form class="forms" action="${pageContext.request.contextPath}/adminPanel" method="post">
-            <label for="title">Enter title magazine</label>
-            <br>
-            <input class="uk-input" name="title">
-            <br>
-            <label for="description">Enter description</label>
-            <br>
-            <input class="uk-input" name="description">
-            <br>
-            <label for="author">Enter author</label>
-            <br>
-            <input class="uk-input" name="author">
-            <br>
-            <label for="pages">Enter pages</label>
-            <br>
-            <input class="uk-input" name="pages" />
-            <br>
-            <label for="price">Enter price</label>
-            <br>
-            <input class="uk-input" name="price" />
-            <br>
-            <input class="submit" type="submit" name="Submit">
-        </form>
-        </div>
-    </section>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form id="productForm" class="productForm" method="post">
+                    <h1 id="register">Create Product</h1>
 
-<c:if test="${not empty message}">
-    <div class="uk-alert-success" uk-alert>
-        <a class="uk-alert-close" uk-close></a>
-        ${message}
+                    <input placeholder="Title..." type="text" class="title" id="title" name="title"></p>
+
+                    <p><input placeholder="Description" type="text" class="description"  id="description" name="description"></p>
+
+                    <p><input placeholder="Author" type="text" class="author" id="author" name="author"></p>
+
+                    <p><input placeholder="Pages" type="text" class="pages" id="pages" name="pages"></p>
+
+                    <p><input placeholder="Price" type="text" class="price" id="price" name="price"></p>
+
+                    <button type="button" onclick="create()"><i class="fa fa-angle-double-right "></i>Create</button></div>
+                </form>
+            </div>
+        </div>
     </div>
-</c:if>
+
+    <script src="js/adminProduct.js"></script>
     <jsp:include page="footer.jsp"></jsp:include>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.19.4/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.19.4/js/uikit-icons.min.js"></script>

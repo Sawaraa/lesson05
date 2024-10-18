@@ -14,7 +14,7 @@
 <body>
     <jsp:include page="header.jsp"></jsp:include>
 
-    <div class="magazine">
+   <!-- <div class="magazine">
         <section>
             <h2 class="title">Available Magazines</h2>
             <div class="uk-grid uk-child-width-1-3@s uk-grid-match" uk-grid>
@@ -61,7 +61,7 @@
             <h3>Total: $<c:out value="${sessionScope.totalPrice}" /></h3>
              </c:forEach>
         </section>
-    </div>
+    </div> -->
 
     <jsp:include page="footer.jsp"></jsp:include>
 

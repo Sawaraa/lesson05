@@ -5,7 +5,7 @@
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
 
   <welcome-file-list>
-    <welcome-file>magazine.jsp</welcome-file>
+    <welcome-file>adminPanel.jsp</welcome-file>
   </welcome-file-list>
 
   <servlet>
@@ -28,7 +28,7 @@
 
   <servlet>
     <servlet-name>adminPanel</servlet-name>
-    <servlet-class>example.com.servlet.AdminServlet</servlet-class>
+    <servlet-class>servlet.AdminProductServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>adminPanel</servlet-name>
@@ -60,6 +60,15 @@
   <servlet-mapping>
     <servlet-name>deleteFromCart</servlet-name>
     <url-pattern>/deleteFromCart</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>logOut</servlet-name>
+    <servlet-class>servlet.LogOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logOut</servlet-name>
+    <url-pattern>/logOut</url-pattern>
   </servlet-mapping>
 
 

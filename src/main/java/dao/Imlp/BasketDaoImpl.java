@@ -32,7 +32,7 @@ public class BasketDaoImpl implements BasketDao {
     public Basket create(Basket basket)  {
         try {
             preparedStatement = connection.prepareStatement(CREATE);
-            preparedStatement.setInt(2,basket.getIdUser());
+            preparedStatement.setInt(1,basket.getIdUser());
             preparedStatement.setInt(2,basket.getIdProduct());
             preparedStatement.executeUpdate();
 

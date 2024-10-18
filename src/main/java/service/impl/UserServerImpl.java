@@ -14,8 +14,6 @@ public class UserServerImpl implements UserService {
     private static UserService userServiceImpl;
     private UserDao userDao;
 
-
-
     private UserServerImpl() throws SQLException {
         userDao = new UserDaoImpl();
     }
@@ -24,7 +22,6 @@ public class UserServerImpl implements UserService {
         if (userServiceImpl == null) {
             userServiceImpl = new UserServerImpl();
         }
-
         return userServiceImpl;
     }
 
@@ -57,5 +54,10 @@ public class UserServerImpl implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userDao.getUserByEmail(email);
+    }
+
+    @Override
+    public String getRoleByEmail(String email) {
+        return userDao.getRoleByEmail(email);
     }
 }

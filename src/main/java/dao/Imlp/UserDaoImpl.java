@@ -20,6 +20,7 @@ public class UserDaoImpl implements UserDao {
     static String DELETE = "delete from user where idUser=?";
     static String UPDATE = "update user set firstName=?, lastName=?, email=?, password=?, where id=? ";
     private static String READ_BY_EMAIL = "select * from user where email=?";
+    private static String GET_ROLE = "select role  from user where email=?";
 
     private static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
@@ -123,5 +124,23 @@ public class UserDaoImpl implements UserDao {
             logger.error(e);
         }
         return user;
+    }
+
+    @Override
+    public String getRoleByEmail(String email) {
+        String role = null;
+        try {
+            preparedStatement = connection.prepareStatement(GET_ROLE);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                role = resultSet.getString("role");
+            }
+        } catch (Exception e) {
+            logger.error(e);
+        }
+
+        return role;
     }
 }

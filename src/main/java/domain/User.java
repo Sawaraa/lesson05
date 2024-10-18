@@ -16,7 +16,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = "user";  // Автоматично встановлюється роль "user"
+        // this.role = "user";  // Автоматично встановлюється роль "user"
         this.isUser = true;
     }
 

@@ -32,8 +32,13 @@ public class LoginServlet extends HttpServlet {
         User user = userService.getUserByEmail(email);
 
         if(user != null && user.getPassword().equals(password)){
-            request.setAttribute("userEmail", email);
-            request.getRequestDispatcher("magazine.jsp").forward(request, response);
+            if(userService.getRoleByEmail(email).equals("admin")){
+                request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
+            }
+            else{
+                request.setAttribute("userEmail", email);
+                request.getRequestDispatcher("magazine.jsp").forward(request, response);
+            }
         }
         else{
             request.getRequestDispatcher("login.jsp").forward(request, response);

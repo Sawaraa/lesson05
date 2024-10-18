@@ -37,7 +37,7 @@ public class ProductDaoImpl implements ProductDao {
             preparedStatement.setString(2,product.getDescription());
             preparedStatement.setString(3,product.getAuthor());
             preparedStatement.setInt(4,product.getPages());
-            preparedStatement.setInt(4,product.getPrice());
+            preparedStatement.setInt(5,product.getPrice());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error(e);

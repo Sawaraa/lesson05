@@ -6,4 +6,5 @@ import domain.User;
 
 public interface UserService extends AbstractDao<User> {
     User getUserByEmail(String email);
+    String getRoleByEmail(String email);
 }

@@ -11,32 +11,23 @@ import java.util.List;
 
 public class UserServerImpl implements UserService {
 
-    private UserDao userDao;
     private static UserService userServiceImpl;
-    private static Logger logger = Logger.getLogger(UserServerImpl.class);
+    private UserDao userDao;
 
-    public UserServerImpl(){
 
-        try {
-            userDao = new UserDaoImpl();
-            if (userDao == null) {
-                logger.error("userDao is null");
-            }
-        } catch (SQLException e) {
-            logger.error("Помилка тут" + e);
-        }
+
+    private UserServerImpl() throws SQLException {
+        userDao = new UserDaoImpl();
     }
 
-    public static UserService getUserService(){
-        if(userServiceImpl == null){
-            userServiceImpl = new UserServerImpl();
-        }
+    public static UserService getUserService() throws SQLException {
         if (userServiceImpl == null) {
-            logger.error("UserServiceImpl is null after initialization");
+            userServiceImpl = new UserServerImpl();
         }
 
         return userServiceImpl;
     }
+
 
     @Override
     public User create(User user)  {

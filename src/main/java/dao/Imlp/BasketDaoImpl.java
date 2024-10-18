@@ -25,7 +25,7 @@ public class BasketDaoImpl implements BasketDao {
     private PreparedStatement preparedStatement;
 
     public BasketDaoImpl() throws SQLException {
-        connection = ConnectionDataBase.getConnection();
+        connection = ConnectionDataBase.getInstance().getConnection();
     }
 
     @Override

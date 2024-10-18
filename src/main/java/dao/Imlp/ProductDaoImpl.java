@@ -26,7 +26,7 @@ public class ProductDaoImpl implements ProductDao {
     private PreparedStatement preparedStatement;
 
     public ProductDaoImpl() throws SQLException {
-        connection = ConnectionDataBase.getConnection();
+        connection = ConnectionDataBase.getInstance().getConnection();
     }
 
     @Override

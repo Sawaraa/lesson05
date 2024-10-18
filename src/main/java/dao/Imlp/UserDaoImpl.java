@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
     private PreparedStatement preparedStatement;
 
     public UserDaoImpl() throws SQLException {
-        connection = ConnectionDataBase.getConnection();
+        connection = ConnectionDataBase.getInstance().getConnection();
     }
 
     @Override

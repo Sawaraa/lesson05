@@ -9,11 +9,16 @@ import service.UserService;
 import service.impl.UserServerImpl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+
     private UserService userService = UserServerImpl.getUserService();
+
+    public LoginServlet() throws SQLException {
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -21,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("login");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         User user = userService.getUserByEmail(email);

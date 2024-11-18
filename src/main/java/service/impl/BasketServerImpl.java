@@ -11,15 +11,19 @@ import java.util.List;
 
 public class BasketServerImpl implements BasketService{
 
+    private static BasketService basketServiceImpl;
     private BasketDao basketDao;
     private static Logger logger = Logger.getLogger(BasketServerImpl.class);
 
-    public BasketServerImpl() {
-        try {
-            basketDao = new BasketDaoImpl();
-        } catch (SQLException e) {
-            logger.error(e);
+    public BasketServerImpl() throws SQLException {
+        basketDao = new BasketDaoImpl();
+    }
+
+    public static BasketService getProductService() throws SQLException {
+        if (basketServiceImpl == null) {
+            basketServiceImpl = new BasketServerImpl();
         }
+        return basketServiceImpl;
     }
 
 

@@ -54,12 +54,13 @@ public class ProductDaoImpl implements ProductDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
+            int productId = resultSet.getInt("idProduct");
             String title = resultSet.getNString("title");
             String description = resultSet.getNString("description");
             String author = resultSet.getNString("author");
             int pages = resultSet.getInt("pages");
             int price = resultSet.getInt("price");
-            product = new Product(title,description,author,pages,price);
+            product = new Product(productId,title,description,author,pages,price);
 
         } catch (SQLException e) {
             logger.error(e);
@@ -92,13 +93,14 @@ public class ProductDaoImpl implements ProductDao {
             preparedStatement = connection.prepareStatement(READ);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
+                int productId = resultSet.getInt("idProduct");
                 String title = resultSet.getNString("title");
                 String description = resultSet.getNString("description");
                 String author = resultSet.getNString("author");
                 int pages = resultSet.getInt("pages");
                 int price = resultSet.getInt("price");
 
-                productList.add(new Product(title,description,author,pages,price));
+                productList.add(new Product(productId,title,description,author,pages,price));
             }
         } catch (SQLException e) {
             logger.error(e);

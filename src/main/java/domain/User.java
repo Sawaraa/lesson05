@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class User {
 
+    private int idUser;
     private String firstName;
     private String lastName;
     private String email;
@@ -16,8 +17,31 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        // this.role = "user";  // Автоматично встановлюється роль "user"
         this.isUser = true;
+    }
+
+    public User(int idUser, String firstName, String lastName, String email, String password) {
+        this.idUser = idUser;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public boolean isUser() {
+        return isUser;
+    }
+
+    public void setUser(boolean user) {
+        isUser = user;
     }
 
     public void setFirstName(String firstName){
@@ -78,10 +102,15 @@ public class User {
     }
 
     @Override
-    public String toString(){
-        return "First name: " + firstName + ";  " +
-                "Last name: " + lastName + ";  " +
-                "Email" + email + ";  " +
-                "Password: " + password;
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", isUser=" + isUser +
+                '}';
     }
 }

@@ -3,16 +3,14 @@ package service.impl;
 import dao.Imlp.ProductDaoImpl;
 import dao.ProductDao;
 import domain.Product;
-import org.apache.log4j.Logger;
-import service.ProsuctService;
-import service.UserService;
+import service.ProductService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductServerImpl implements ProsuctService {
+public class ProductServerImpl implements ProductService {
 
-    private static ProsuctService productServiceImpl;
+    private static ProductService productServiceImpl;
     private ProductDao productDao;
 //    private static Logger logger = Logger.getLogger(ProductServerImpl.class);
 
@@ -20,7 +18,7 @@ public class ProductServerImpl implements ProsuctService {
             productDao = new ProductDaoImpl();
     }
 
-    public static ProsuctService getProductService() throws SQLException {
+    public static ProductService getProductService() throws SQLException {
         if (productServiceImpl == null) {
             productServiceImpl = new ProductServerImpl();
         }

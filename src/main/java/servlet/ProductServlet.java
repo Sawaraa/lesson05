@@ -2,17 +2,18 @@ package servlet;
 
 import domain.Product;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.ProsuctService;
+import service.ProductService;
 import service.impl.ProductServerImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ProductServlet {
+public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    ProsuctService prosuctService = ProductServerImpl.getProductService();
+    private ProductService productService = ProductServerImpl.getProductService();
 
     public ProductServlet() throws SQLException {
     }
@@ -20,7 +21,12 @@ public class ProductServlet {
     // to get resource (product)
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
+        String productId = request.getParameter("id");
+
+        Product product = productService.read(Integer.parseInt(productId));
+
+        request.setAttribute("product", product);
+        request.getRequestDispatcher("busket.jsp").forward(request, response);
     }
 
     // to create resource (product)
@@ -32,7 +38,7 @@ public class ProductServlet {
         String price = request.getParameter("price");
 
         Product product  = new Product(title, description, author, getValidatedPages(pages),  getValidatedPrice(price));
-        prosuctService.create(product);
+        productService.create(product);
         response.setContentType("text");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("Success");

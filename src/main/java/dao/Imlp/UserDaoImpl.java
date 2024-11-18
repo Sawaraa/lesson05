@@ -93,12 +93,13 @@ public class UserDaoImpl implements UserDao {
             preparedStatement = connection.prepareStatement(READ);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
+                int idUser = resultSet.getInt("idUser");
                 String firstName = resultSet.getNString("firstName");
                 String lastName = resultSet.getNString("lastName");
                 String email = resultSet.getNString("email");
                 String password = resultSet.getNString("password");
 
-                userList.add(new User(firstName, lastName, email, password));
+                userList.add(new User(idUser,firstName, lastName, email, password));
             }
         } catch (SQLException e) {
             logger.error(e);
@@ -115,10 +116,11 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
+            int id = resultSet.getInt("idUser");
             String firstName = resultSet.getNString("firstName");
             String lastName = resultSet.getNString("lastName");
             String password = resultSet.getNString("password");
-            user = new User(firstName, lastName, email, password);
+            user = new User(id,firstName, lastName, email, password);
 
         } catch (SQLException e) {
             logger.error(e);

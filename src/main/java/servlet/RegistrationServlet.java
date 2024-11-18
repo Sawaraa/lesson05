@@ -35,10 +35,10 @@ public class RegistrationServlet extends HttpServlet {
 
         if (!firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             userService.create(new User(firstName, lastName, email, password));
-            request.getRequestDispatcher("magazine.jsp").forward(request, response);
         }
         else{
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("magazine.jsp").forward(request, response);
     }
 }

@@ -87,10 +87,11 @@ public class BasketDaoImpl implements BasketDao {
             preparedStatement = connection.prepareStatement(READ);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
+                int id = resultSet.getInt("idBasket");
                 int idUser = resultSet.getInt("idUser");
                 int idProduct = resultSet.getInt("idProduct");
 
-                basketsList.add(new Basket(idUser,idProduct));
+                basketsList.add(new Basket(id,idUser,idProduct));
             }
         } catch (SQLException e) {
             logger.error(e);

@@ -79,10 +79,10 @@
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png" alt="">
-										<div class="cart_count"><span>3</span></div>
+										<div class="cart_count"><span>0</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="#">Cart</a></div>
+										<div class="cart_text"><a href="${pageContext.request.contextPath}/busket.jsp">Cart</a></div>
 										<div class="cart_price">$185</div>
 									</div>
 								</div>
@@ -108,13 +108,8 @@
 
 							<div class="main_nav_menu">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="#">Create product<i class="fas fa-chevron-down"></i></a></li>
-									<!-- <li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li> -->
+								    <li><a href="${pageContext.request.contextPath}/magazine.jsp">Shop<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="${pageContext.request.contextPath}/adminPanel.jsp">Create product<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="contact.html">Users<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
@@ -231,5 +226,6 @@
 
 </div>
     <script src="js/header.js"></script>
+     <script src="js/product.js"></script>
 </body>
 </html>

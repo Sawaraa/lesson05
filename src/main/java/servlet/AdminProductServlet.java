@@ -1,15 +1,12 @@
 package servlet;
 
 import domain.Product;
-import domain.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.ProsuctService;
-import service.UserService;
+import service.ProductService;
 import service.impl.ProductServerImpl;
-import service.impl.UserServerImpl;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,7 +14,7 @@ import java.sql.SQLException;
 public class AdminProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-   private ProsuctService productService = ProductServerImpl.getProductService();
+   private ProductService productService = ProductServerImpl.getProductService();
 
     public AdminProductServlet() throws SQLException {
     }

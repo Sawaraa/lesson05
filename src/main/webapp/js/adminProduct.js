@@ -17,8 +17,8 @@ function create(){
     		$.post("adminPanel", product,
              function(data) {
              	if (data == 'Success') {
-             		$("form")[0].reset();
-             		$("#message").text("Продукт успішно створено!").show();
+             		$("#productForm")[0].reset();
+                    $("#message").text("Продукт успішно створено!").show();
              	}
              });
 };

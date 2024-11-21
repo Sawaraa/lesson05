@@ -82,7 +82,7 @@
 										<div class="cart_count"><span>0</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="${pageContext.request.contextPath}/busket.jsp">Cart</a></div>
+										<div class="cart_text"><a href="${pageContext.request.contextPath}/listProduct.jsp">Cart</a></div>
 										<div class="cart_price">$185</div>
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 								<ul class="standard_dropdown main_nav_dropdown">
 								    <li><a href="${pageContext.request.contextPath}/magazine.jsp">Shop<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="${pageContext.request.contextPath}/adminPanel.jsp">Create product<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="contact.html">Users<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="${pageContext.request.contextPath}/listProduct.jsp">Basket<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 

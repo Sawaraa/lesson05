@@ -98,4 +98,60 @@
     <url-pattern>/basket</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ListProducts</servlet-name>
+    <servlet-class>servlet.ListOfProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListProducts</servlet-name>
+    <url-pattern>/listProduct</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>BasketDelete</servlet-name>
+    <servlet-class>servlet.BasketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BasketDelete</servlet-name>
+    <url-pattern>/bucket</url-pattern>
+  </servlet-mapping>
+
+
+<!--  <servlet>-->
+<!--    <servlet-name>MagazineFilter</servlet-name>-->
+<!--    <servlet-class>filter.MagazineFilter</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>MagazineFilter</servlet-name>-->
+<!--    <url-pattern>/magazine.jsp</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+
+<!--  <servlet>-->
+<!--    <servlet-name>AdminPanelFilter</servlet-name>-->
+<!--    <servlet-class>filter.AdminPanelFilter</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>AdminPanelFilter</servlet-name>-->
+<!--    <url-pattern>/adminPanel.jsp</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+<!--  <servlet>-->
+<!--    <servlet-name>ListProductFilter</servlet-name>-->
+<!--    <servlet-class>filter.listProductFilter</servlet-class>-->
+<!--  </servlet>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>ListProductFilter</servlet-name>-->
+<!--    <url-pattern>/listProduct.jsp</url-pattern>-->
+<!--  </servlet-mapping>-->
+
+  <servlet>
+    <servlet-name>UserRole</servlet-name>
+    <servlet-class>servlet.UserRole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRole</servlet-name>
+    <url-pattern>/user-role</url-pattern>
+  </servlet-mapping>
+
 </web-app>

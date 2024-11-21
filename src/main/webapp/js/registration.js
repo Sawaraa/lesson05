@@ -29,7 +29,6 @@ function ready(){
 function login(){
     var email = $("#typeEmailX").val();
 	var password = $("#typePasswordX").val();
-
 	if (email == '' || password == '') {
 		alert("Please fill login form!");
 	} else {
@@ -40,7 +39,18 @@ function login(){
 
 		$.post("login", userLogin, function(data) {
 			console.log(data);
+			if (data.success) {
+                            // Після успішного логування, отримаємо роль
+                            $.get("user-role", function(roleData) {
+                                if (roleData !== '') {
+                                    var userRole = roleData;  // Роль користувача
+                                    console.log("User role:", userRole);
+                                    // Можна зберегти роль у sessionStorage для подальшого використання
+                                    sessionStorage.setItem("userRole", userRole);
+
+                                }
+                            });
 		});
 	}
-}
+};
 

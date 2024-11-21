@@ -12,8 +12,6 @@
 <body>
     <jsp:include page="header.jsp"></jsp:include>
 
-
-
     <jsp:include page="footer.jsp"></jsp:include>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.19.4/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.19.4/js/uikit-icons.min.js"></script>

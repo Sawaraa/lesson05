@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class BasketServlet extends HttpServlet {
-    private BasketService bucketService = BasketServerImpl.getProductService();
+    private BasketService bucketService = BasketServerImpl.getBasketServiceImpl();
 
     public BasketServlet() throws SQLException {
     }
@@ -26,6 +26,15 @@ public class BasketServlet extends HttpServlet {
 
         Basket basket = new Basket(userId, Integer.parseInt(productId));
         bucketService.create(basket);
+
+        response.setContentType("text");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("Success");
+    }
+
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String bucketId = request.getParameter("bucketId");
+        bucketService.delete(Integer.parseInt(bucketId));
 
         response.setContentType("text");
         response.setCharacterEncoding("UTF-8");

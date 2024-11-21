@@ -19,7 +19,7 @@ public class BasketServerImpl implements BasketService{
         basketDao = new BasketDaoImpl();
     }
 
-    public static BasketService getProductService() throws SQLException {
+    public static BasketService getBasketServiceImpl() throws SQLException {
         if (basketServiceImpl == null) {
             basketServiceImpl = new BasketServerImpl();
         }

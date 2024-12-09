@@ -1,14 +1,7 @@
 package filter;
 
 import abstractDao.FilterService;
-import domain.UserRole;
-import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServlet;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
 
 public class MagazineFilter extends HttpServlet {
     private FilterService filterService = FilterService.getFilterService();

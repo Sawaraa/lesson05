@@ -12,12 +12,13 @@ public class User {
     private String role;
     private boolean isUser;
 
-    public User(String firstName, String lastName, String email, String password){
+    public User(String firstName, String lastName, String email, String password,String role){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.isUser = true;
+        this.role = "user";
     }
 
     public User(int idUser, String firstName, String lastName, String email, String password) {

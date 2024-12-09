@@ -108,9 +108,8 @@
 
 							<div class="main_nav_menu">
 								<ul class="standard_dropdown main_nav_dropdown">
-								    <li><a href="${pageContext.request.contextPath}/magazine.jsp">Shop<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="${pageContext.request.contextPath}/listProduct.jsp">Basket<i class="fas fa-chevron-down"></i></a></li>
-								</ul>
+								   <li><a href="${pageContext.request.contextPath}/adminPanel.jsp">Create product<i class="fas fa-chevron-down"></i></a></li>
+									</ul>
 							</div>
 
 							<!-- Menu Trigger -->

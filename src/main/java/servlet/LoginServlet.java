@@ -26,31 +26,40 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("login.jsp").forward(request, response);
+        String email = request.getParameter("email");
+        User user = userService.getUserByEmail(email);
+        if(user != null) {
+            String json = new Gson().toJson("Success");
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
         User user = userService.getUserByEmail(email);
 
+        HttpSession session = request.getSession(true);
+        session.setAttribute("userId", user.getIdUser());
         if(user != null && user.getPassword().equals(password)){
-            HttpSession session = request.getSession(true);
-            session.setAttribute("userId", user.getIdUser());
-            session.setAttribute("role", user.getRole());
-            System.out.println(user.getRole());
-
-//            UserLogin userLogin = new UserLogin();
-//            userLogin.destinationUrl = "magazine.jsp";
-//            userLogin.userEmail = user.getEmail();
-//            String json = new Gson().toJson(userLogin);
-//            response.setContentType("application/json");
-//            response.setCharacterEncoding("UTF-8");
-//            response.getWriter().write(json);
-
-            request.setAttribute("userEmail", email);
-            request.getRequestDispatcher("magazine.jsp").forward(request, response);
-            return;
+            if(userService.getRoleByEmail(email).equals("admin")){
+                request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
+                return;
+            }
+            else{
+                request.setAttribute("userEmail", email);
+                request.getRequestDispatcher("magazine.jsp").forward(request, response);
+                System.out.println(user.getFirstName());
+                System.out.println(user.getEmail());
+                System.out.println(user.getIdUser());
+                System.out.println(user.getRole());
+                return;
+            }
+        }
+        else{
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         request.getRequestDispatcher("login.jsp").forward(request, response);
 

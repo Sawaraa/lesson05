@@ -34,7 +34,7 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (!firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-            userService.create(new User(firstName, lastName, email, password));
+            userService.create(new User(firstName, lastName, email, password, "user"));
         }
         else{
             request.getRequestDispatcher("index.jsp").forward(request, response);

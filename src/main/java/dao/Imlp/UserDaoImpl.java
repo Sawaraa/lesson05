@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
     static String DELETE = "delete from user where idUser=?";
     static String UPDATE = "update user set firstName=?, lastName=?, email=?, password=?, where id=? ";
     private static String READ_BY_EMAIL = "select * from user where email=?";
-    private static String GET_ROLE = "select role  from user where email=?";
+    private static String GET_ROLE = "select role from user where email=?";
 
     private static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
@@ -60,7 +60,8 @@ public class UserDaoImpl implements UserDao {
             String lastName = resultSet.getNString("lastName");
             String email = resultSet.getNString("email");
             String password = resultSet.getNString("password");
-            user = new User(firstName, lastName, email, password);
+            String role = "user";
+            user = new User(firstName, lastName, email, password, role);
         } catch (SQLException e) {
             logger.error(e);
         }

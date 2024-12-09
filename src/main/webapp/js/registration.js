@@ -36,21 +36,16 @@ function login(){
 			email : email,
 			password : password
 		};
-
-		$.post("login", userLogin, function(data) {
-			console.log(data);
-			if (data.success) {
-                            // Після успішного логування, отримаємо роль
-                            $.get("user-role", function(roleData) {
-                                if (roleData !== '') {
-                                    var userRole = roleData;  // Роль користувача
-                                    console.log("User role:", userRole);
-                                    // Можна зберегти роль у sessionStorage для подальшого використання
-                                    sessionStorage.setItem("userRole", userRole);
-
-                                }
-                            });
-		});
 	}
 };
+
+$(document).ready(function() {
+var userRole = null;
+
+	$.get("user-role", function(data) {
+		if (data !== '') {
+			userRole = data;
+		}
+	})
+	}
 

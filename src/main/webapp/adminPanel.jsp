@@ -11,7 +11,7 @@
      <script> src= "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"</script>
 </head>
 <body>
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="adminHeader.jsp"></jsp:include>
 
     <div class="container mt-5">
         <div class="row d-flex justify-content-center align-items-center">

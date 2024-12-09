@@ -1,6 +1,6 @@
 package abstractDao;
 
-import domain.UserRole;
+import dao.UserRole;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;

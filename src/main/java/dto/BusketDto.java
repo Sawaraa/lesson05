@@ -1,7 +1,7 @@
 package dto;
 
 public class BusketDto {
-    public Integer bucketId;
+    public String bucketId;
     public String title;
     public String description;
     public String author;

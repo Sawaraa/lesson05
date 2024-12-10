@@ -1,13 +1,34 @@
 package domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idProduct")
     private int id;
+
+    @Column
     private String title;
+
+    @Column
     private String description;
+
+    @Column
     private String author;
+
+    @Column
     private int pages;
+
+    @Column
     private int price;
+
+    public Product(){
+
+    }
 
     public Product(String title, String description, String author, int pages, int price) {
         this.title = title;

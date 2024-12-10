@@ -1,16 +1,38 @@
 package domain;
 
+import javax.persistence.*;
 import java.util.Objects;
+
+@Entity
+@Table(name = "user")
 
 public class User {
 
+    @Id
+    @GeneratedValue
     private int idUser;
+
+    @Column
     private String firstName;
+
+    @Column
     private String lastName;
+
+    @Column
     private String email;
+
+    @Column
     private String password;
+
+    @Column
     private String role;
+
+    @Column
     private boolean isUser;
+
+    public User(){
+
+    }
 
     public User(String firstName, String lastName, String email, String password,String role){
         this.firstName = firstName;

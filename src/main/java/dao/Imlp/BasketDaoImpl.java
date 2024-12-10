@@ -1,10 +1,13 @@
 package dao.Imlp;
 
+import abstractDao.FactoryManager;
 import connection.ConnectionDataBase;
 import dao.BasketDao;
 import domain.Basket;
 import org.apache.log4j.Logger;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,31 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BasketDaoImpl implements BasketDao {
-    static String READ = "select * from basket";
-    static String READ_BY_ID = "select * from basket where idBasket =?";
-    static String CREATE = "insert into basket(idUser, idProduct) value (?,?)";
-    static String DELETE = "delete from basket where idBasket=?";
-    static String UPDATE = "update basket set idBasket=?, idUser=?, idProduct=?, where id=? ";
-
-    private static Logger logger = Logger.getLogger(BasketDaoImpl.class);
-
-    private final Connection connection;
-    private PreparedStatement preparedStatement;
-
-    public BasketDaoImpl() throws SQLException {
-        connection = ConnectionDataBase.getInstance().getConnection();
-    }
+    private EntityManager em = FactoryManager.getEntityManager();
 
     @Override
     public Basket create(Basket basket)  {
         try {
-            preparedStatement = connection.prepareStatement(CREATE);
-            preparedStatement.setInt(1,basket.getIdUser());
-            preparedStatement.setInt(2,basket.getIdProduct());
-            preparedStatement.executeUpdate();
+            em.getTransaction().begin();
+            em.persist(basket);
+            em.getTransaction().commit();
 
-        } catch (SQLException e) {
-            logger.error(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return basket;
@@ -48,16 +37,9 @@ public class BasketDaoImpl implements BasketDao {
     public Basket read(int id)  {
         Basket basket = null;
         try {
-            preparedStatement = connection.prepareStatement(READ_BY_ID);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-
-            int idUser = resultSet.getInt("idUser");
-            int idProduct = resultSet.getInt("idProduct");
-            basket =new Basket(idUser,idProduct);
-        } catch (SQLException e) {
-            logger.error(e);
+            basket = em.find(Basket.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return basket;
@@ -71,31 +53,24 @@ public class BasketDaoImpl implements BasketDao {
     @Override
     public void delete(int id)  {
         try {
-            preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            logger.error(e);
+            Basket basket = read(id);
+            em.getTransaction().begin();
+            em.remove(basket);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Basket> readAll()  {
-        List<Basket> basketsList = new ArrayList<>();
+        Query query = null;
         try {
-            preparedStatement = connection.prepareStatement(READ);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                int id = resultSet.getInt("idBasket");
-                int idUser = resultSet.getInt("idUser");
-                int idProduct = resultSet.getInt("idProduct");
-
-                basketsList.add(new Basket(id,idUser,idProduct));
-            }
-        } catch (SQLException e) {
-            logger.error(e);
+            query = em.createQuery("SELECT e FROM Bucket e");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return basketsList;
+        return query.getResultList();
     }
 }

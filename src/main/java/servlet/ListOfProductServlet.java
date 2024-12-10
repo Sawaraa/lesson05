@@ -44,7 +44,7 @@ public class ListOfProductServlet extends HttpServlet {
             BusketDto bucketDto = new BusketDto();
             bucketDto.bucketId = bucket.getIdBasket();
 
-            Product product = idToProduct.get(bucket.getIdProduct());
+            Product product = idToProduct.get(bucket.getProduct().getId());
             bucketDto.title = product.getTitle();
             bucketDto.description = product.getDescription();
             bucketDto.author = product.getAuthor();
